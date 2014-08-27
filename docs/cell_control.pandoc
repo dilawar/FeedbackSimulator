@@ -1,7 +1,26 @@
 ---
 title: How cell controls their variables, Notes from literature survey
 author: Dilawar Singh
-bibliography: references
+bibliography: cell_control.bib
 ---
 
-## 
+## System under study
+
+(@chemical) $$ x_1 \xrightarrow{u(x_2(-\infty,t))} x_1 + 1 $$
+$$ x_1 \xrightarrow{x_1/\tau_1} x_1 - 1 $$
+$$ x_2 \xrightarrow{f(x_1)} x_2 + 1 $$
+
+Variable $x_1$ is under control. Function $u$ is _control daemon_ who knows past
+and present of $x_1$.
+
+## Statements about the system
+
+- A feedback system with signalling involved. 
+
+- It is extremely hard to reduce noise in system when signal $x_2$ is made less
+frequently than the controlled component $x_1$. Reducing the standard deviation
+of $x_1$ tenfold can be achieved by increading the birth rate of $x_2$ by a
+factor of 10000.
+
+- Thus this paper established bounds on such system; even when non-linear
+amplification to signal is applied.
