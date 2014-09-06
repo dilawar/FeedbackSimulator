@@ -4,7 +4,6 @@ SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
 PROJECT(feedback)
 
 FIND_PACKAGE(SystemC REQUIRED)
-
 SET(Boost_USE_STATIC_LIBS ON)
 
 ## Add python support 
@@ -24,12 +23,17 @@ INCLUDE_DIRECTORIES(${SystemC_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
 ADD_EXECUTABLE(feedback.out src/main.cpp)
 ADD_SUBDIRECTORY(src)
 
-TARGET_LINK_LIBRARIES(feedback.out 
-    channel
-    ${SystemC_LIBRARIES}
-    ${Boost_LIBRARIES}
-    )
 
 if(PYTHON)
-    TARGET_LINK_LIBRARIES(feedback.out ${PYTHON_LIBRARIES})
+    TARGET_LINK_LIBRARIES(feedback.out 
+        ${SystemC_LIBRARIES}
+        ${Boost_LIBRARIES}
+        ${PYTHON_LIBRARIES}
+        )
+else()
+    TARGET_LINK_LIBRARIES(feedback.out 
+        channel
+        ${SystemC_LIBRARIES}
+        ${Boost_LIBRARIES}
+        )
 endif()
