@@ -46,7 +46,7 @@ void Channel::setId(unsigned int id)
 }
 
 #ifdef PYTHON
-BOOST_PYTHON_MODULE(Channel)
+BOOST_PYTHON_MODULE(channel)
 {
     class_<Channel>("Channel")
         .def_readonly("id", &Channel::id_)
