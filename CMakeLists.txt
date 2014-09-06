@@ -21,15 +21,15 @@ endif()
  
 INCLUDE_DIRECTORIES(${SystemC_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
 
-ADD_EXECUTABLE(feedback src/main.cpp)
+ADD_EXECUTABLE(feedback.out src/main.cpp)
 ADD_SUBDIRECTORY(src)
 
-TARGET_LINK_LIBRARIES(feedback 
+TARGET_LINK_LIBRARIES(feedback.out 
     channel
     ${SystemC_LIBRARIES}
     ${Boost_LIBRARIES}
     )
 
 if(PYTHON)
-    TARGET_LINK_LIBRARIES(feedback ${PYTHON_LIBRARIES})
+    TARGET_LINK_LIBRARIES(feedback.out ${PYTHON_LIBRARIES})
 endif()
