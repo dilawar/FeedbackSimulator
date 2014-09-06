@@ -19,14 +19,27 @@
 #ifndef  MODULE_INC
 #define  MODULE_INC
 
+#include <systemc.h>
+#include <iostream>
+#include <memory>
+
+using namespace std;
+
 class Module
 {
     public:
         Module();
+
+        Module(string& name);
+
         ~Module();
+
+    public:
+        string name;
 
     private:
         /* data */
+        unique_ptr<sc_module_name> _up_sc_module_;
 };
 
 #endif   /* ----- #ifndef MODULE_INC  ----- */

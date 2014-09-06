@@ -27,6 +27,12 @@ Module::~Module()
 {
 }
 
+Module::Module(string& name)
+{
+    cerr << "Creating a module with name " << name << endl;
+    _up_sc_module_.reset(new sc_module_name(name.c_str()));
+}
+
 #if PYTHON
     
 #endif
