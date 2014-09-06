@@ -9,6 +9,7 @@ SET(Boost_USE_STATIC_LIBS OFF)
 ## Add python support 
 SET(PYTHON ON)
 if(PYTHON)
+    SET(PYPATH ${CMAKE_SOURCE_DIR}/python)
     ADD_DEFINITIONS(-DPYTHON)
     FIND_PACKAGE(Boost REQUIRED COMPONENTS graph python)
     FIND_PACKAGE(PythonLibs REQUIRED)
@@ -27,6 +28,7 @@ else()
 endif()
 
 if(PYTHON)
+    MESSAGE("++ Building for python: Modules will be saved in ${PYPATH}")
 else()
     TARGET_LINK_LIBRARIES(feedback.out 
         channel
