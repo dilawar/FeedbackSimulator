@@ -1,4 +1,7 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.6)
+ENABLE_TESTING()
+
+
 SET(CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake_modules)
 
 PROJECT(feedback)
@@ -34,5 +37,16 @@ else()
         channel
         ${SystemC_LIBRARIES}
         ${Boost_LIBRARIES}
+        )
+endif()
+
+### Add tests
+if(PYTHON)
+    SET(ENV{CTEST_OUTPUT_ON_FAILURE} ${PYPATH})
+    MESSAGE("++ PYTHONPATH is set to ${PYPATH}")
+    FIND_PACKAGE(PythonInterp REQUIRED)
+    SET(ENV{PYTHONPATH} ${PYPATH})
+    ADD_TEST(PYTHON load_module_test 
+        COMMAND ${PYTHON_EXECUTABLE} ${CMAKE_CURRENT_SOURCE_DIRECTORY}/tests/test.py
         )
 endif()
