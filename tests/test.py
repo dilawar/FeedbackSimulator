@@ -1,2 +1,4 @@
+import sys
+sys.path.append("../python")
 import channel
-print(dir(feednack))
+print(dir(channel))
