@@ -9,7 +9,7 @@ FIND_PACKAGE(SystemC REQUIRED)
 SET(Boost_USE_STATIC_LIBS OFF)
 
 ## Add python support 
-SET(PYTHON ON)
+SET(PYTHON OFF)
 if(PYTHON)
     SET(PYPATH ${CMAKE_SOURCE_DIR}/python)
     ADD_DEFINITIONS(-DPYTHON)
@@ -21,10 +21,10 @@ else()
 endif()
 
 INCLUDE_DIRECTORIES(${SystemC_INCLUDE_DIRS} ${Boost_INCLUDE_DIRS})
+
 ADD_SUBDIRECTORY(src)
 
 if(PYTHON)
-
 else()
     ADD_EXECUTABLE(feedback.out src/main.cpp)
 endif()

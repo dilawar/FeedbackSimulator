@@ -21,9 +21,9 @@
 
 #ifdef PYTHON
 #include <boost/python.hpp>
+using namespace boost::python;
 #endif
 
-using namespace boost::python;
 
 
 Channel::Channel()

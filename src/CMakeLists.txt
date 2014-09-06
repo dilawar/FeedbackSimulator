@@ -1,11 +1,8 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
 SET(SRC Channel.cpp)
 
-ADD_LIBRARY(channel MODULE
-    ${SRC}
-)
-
 IF(PYTHON)
+    ADD_LIBRARY(channel MODULE ${SRC})
     SET_TARGET_PROPERTIES(channel
         PROPERTIES PREFIX ""
         LIBRARY_OUTPUT_DIRECTORY ${PYPATH}
@@ -15,5 +12,7 @@ IF(PYTHON)
         ${SystemC_LIBRARIES}
         ${Boost_LIBRARIES}
         )
-endif()
+ELSE()
+    ADD_LIBRARY(channel STATIC ${SRC})
+ENDIF()
 
