@@ -1,5 +1,7 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
-ADD_LIBRARY(channel STATIC
-    Channel.cpp
+SET(SRC Channel.cpp)
+
+ADD_LIBRARY(channel SHARED
+    ${SRC}
 )
 
