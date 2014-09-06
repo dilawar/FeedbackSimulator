@@ -30,7 +30,7 @@ class Module
     public:
         Module();
 
-        Module(string& name);
+        Module(string name);
 
         ~Module();
 

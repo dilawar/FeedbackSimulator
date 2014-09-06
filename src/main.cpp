@@ -18,12 +18,14 @@
 
 
 #include <iostream>
+#include "Module.h"
 
 using namespace std;
 
 int main(int argc, const char *argv[])
 {
-    
     cerr << "I am here" << endl;
+    string name = "modA";
+    Module*  module = new Module(name);
     return 0;
 }
