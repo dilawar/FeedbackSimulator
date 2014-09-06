@@ -1,2 +1,3 @@
-My works during rotation in NCBS.
+FeedbackSimulator
 
+Simulation of systems with feedback loops 
