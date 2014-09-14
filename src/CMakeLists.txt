@@ -1,5 +1,5 @@
 CMAKE_MINIMUM_REQUIRED(VERSION 2.8)
-SET(SRC Channel.cpp Module.cpp)
+SET(SRC Channel.cpp Module.cpp RandomVariable.cpp)
 
 IF(PYTHON)
     ADD_LIBRARY(channel MODULE ${SRC})

@@ -25,17 +25,27 @@
  *  Description:  
  * ==============================================================================
  */
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+template<typename Sample_Type, typename Prob_Type>
 class RandomVariable
 {
     public:
         /* ====================  LIFECYCLE     =================================== */
         RandomVariable ();                             /* constructor      */
+        RandomVariable ( string type );
+
         RandomVariable ( const RandomVariable &other );   /* copy constructor */
         ~RandomVariable ();                            /* destructor       */
 
         /* ====================  ACCESSORS     =================================== */
 
         /* ====================  MUTATORS      =================================== */
+        void setType(string type);
 
         /* ====================  OPERATORS     =================================== */
 
@@ -45,6 +55,9 @@ class RandomVariable
         /* ====================  METHODS       =================================== */
 
         /* ====================  DATA MEMBERS  =================================== */
+        string name;
+        string type;
+
 
     private:
         /* ====================  METHODS       =================================== */
