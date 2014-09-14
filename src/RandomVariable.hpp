@@ -28,17 +28,41 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 using namespace std;
 
+
+/**
+ * @brief Types of distribution available.
+ */
+enum class ProbDistType { NORMAL, POISSON };
+
+std::ostream& operator << (std::ostream& os, const ProbDistType& obj)
+{
+    switch(obj)
+    {
+        case ProbDistType::NORMAL: os << "NORMAL";
+        case ProbDistType::POISSON: os << "POISSON";
+        default:  os << "UNKNOWN DISTRIBUTION";
+    }
+    return os;
+}
+
+/**
+ * @brief Class representing RandomVariable in use.
+ *
+ * @tparam Sample_Type Type of events.
+ * @tparam Prob_Type  Type of Probabilities, mostly double.
+ */
 template<typename Sample_Type, typename Prob_Type>
 class RandomVariable
 {
     public:
         /* ====================  LIFECYCLE     =================================== */
         RandomVariable ();                             /* constructor      */
-        RandomVariable ( string type );
-        RandomVariable ( string type, Prob_Type mean, Prob_Type variance);
+        RandomVariable ( ProbDistType type );
+        RandomVariable ( ProbDistType type, Prob_Type mean, Prob_Type variance);
 
         RandomVariable ( const RandomVariable &other );   /* copy constructor */
         ~RandomVariable ();                            /* destructor       */
@@ -46,11 +70,13 @@ class RandomVariable
         /* ====================  ACCESSORS     =================================== */
 
         /* ====================  MUTATORS      =================================== */
-        void setType(string type);
+        void setType(ProbDistType type);
 
         void setMean(double mean);
 
         void setVariance(double variance);
+
+        void generate(vector<Prob_Type>& result);
 
         /* ====================  OPERATORS     =================================== */
 
@@ -60,15 +86,19 @@ class RandomVariable
         /* ====================  METHODS       =================================== */
 
         /* ====================  DATA MEMBERS  =================================== */
-        string name;
-        string type;
-        double mean;
-        double variance;
+        string name_;
+        ProbDistType type_;
+
+        unsigned long size_;
+
+        double mean_;
+        double variance_;
 
     private:
         /* ====================  METHODS       =================================== */
 
         /* ====================  DATA MEMBERS  =================================== */
+
 
 }; /* -----  end of class RandomVariable  ----- */
 
