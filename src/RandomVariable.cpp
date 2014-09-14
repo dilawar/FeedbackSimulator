@@ -26,6 +26,7 @@
 #include <boost/random/variate_generator.hpp>
 #include <boost/random/mersenne_twister.hpp>
 #include <boost/random/normal_distribution.hpp>
+#include <boost/random/poisson_distribution.hpp>
 
 using namespace boost;
 
@@ -44,9 +45,7 @@ RandomVariable<Sample_Type, Prob_Type>::RandomVariable ()
 template<typename Sample_Type, typename Prob_Type>
 RandomVariable<Sample_Type, Prob_Type>::RandomVariable ( ProbDistType type )
 {
-    BOOST_LOG_TRIVIAL(info) << "Creating a RandomVariable with type : " << type;
     setType(type);
-
 }  /* -----  end of method RandomVariable::RandomVariable  (constructor)  ----- */
 
 template<typename Sample_Type, typename Prob_Type>
@@ -111,7 +110,7 @@ RandomVariable<Sample_Type, Prob_Type>& RandomVariable<Sample_Type, Prob_Type>::
 template<typename Sample_Type, typename Prob_Type>
 void RandomVariable<Sample_Type, Prob_Type>::setType(ProbDistType type)
 {
-    BOOST_LOG_TRIVIAL(debug) << " + Type of distribution " << type;
+    BOOST_LOG_TRIVIAL(debug) << " + Type of distribution " << toString(type);
     type_ = type;
 }
 
@@ -146,22 +145,38 @@ void RandomVariable<Sample_Type, Prob_Type>::setVariance(double variance)
 template<typename Sample_Type, typename Prob_Type>
 void RandomVariable<Sample_Type, Prob_Type>::generate(vector<Prob_Type>& result)
 {
-    BOOST_LOG_TRIVIAL(debug) << "Populating with " << result.size() 
-        << " numbers. ";
-    vector<string> supportedTypes;
 
     if(type_ == ProbDistType::NORMAL)
     {
-        boost::variate_generator<boost::mt19937, boost::normal_distribution<Prob_Type>>
-            generator(boost::mt19937(time(0)), boost::normal_distribution<Prob_Type>());
+        BOOST_LOG_TRIVIAL(debug) << "NORMAL distribution with mean " 
+            << mean_ 
+            << " and variance (sigma) " 
+            << variance_ 
+            ;
 
-        /* Populate using generator */
-        for(auto i = result.begin(); i < result.end(); i++)
-            *i = generator();
+        /* Create a Normal distribution with given mean */
+        boost::normal_distribution<Prob_Type> nd(mean_, variance_);
+        boost::variate_generator<boost::mt19937, boost::normal_distribution<Prob_Type>>
+            generator(boost::mt19937(time(0)), nd);
+        for(auto& i : result) i = generator();
+    }
+    else if(type_ == ProbDistType::POISSON)
+    {
+        BOOST_LOG_TRIVIAL(debug) << "POISSON distribution with mean " 
+            << mean_ 
+            ;
+        boost::poisson_distribution<Sample_Type, Prob_Type> pd(mean_);
+        boost::variate_generator<boost::mt19937
+            , boost::poisson_distribution<Sample_Type, Prob_Type>>
+            generator(boost::mt19937(time(0)), pd);
+        for(auto& i : result) i = generator();
     }
     else
     {
-        BOOST_LOG_TRIVIAL(error) << "Unknown distribution : " << type_;
+        BOOST_LOG_TRIVIAL(error) << "Unknown/unimplemented distribution : " 
+            << toString(type_) 
+            << " defaulting to UNIFORM";
+
     }
 }
 

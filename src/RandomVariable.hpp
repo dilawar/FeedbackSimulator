@@ -36,18 +36,37 @@ using namespace std;
 /**
  * @brief Types of distribution available.
  */
-enum class ProbDistType { NORMAL, POISSON };
+enum class ProbDistType { NORMAL, POISSON, GUASSIAN, UNIFORM };
 
+string toString(const ProbDistType& obj)
+{
+    switch(obj)
+    {
+        case ProbDistType::NORMAL: return "NORMAL";
+        case ProbDistType::POISSON: return "POISSON";
+        case ProbDistType::GUASSIAN: return "GUASSIAN";
+        case ProbDistType::UNIFORM: return "UNIFORM";
+        default:  return "UNKNOWN";
+    }
+}
+
+#if  0     /* ----- #if 0 : If0Label_1 ----- */
 std::ostream& operator << (std::ostream& os, const ProbDistType& obj)
 {
     switch(obj)
     {
         case ProbDistType::NORMAL: os << "NORMAL";
         case ProbDistType::POISSON: os << "POISSON";
-        default:  os << "UNKNOWN DISTRIBUTION";
+        case ProbDistType::GUASSIAN: os << "GUASSIAN";
+        case ProbDistType::UNIFORM: os << "UNIFORM";
+        default:  os << "UNKNOWN";
     }
     return os;
 }
+
+#endif     /* ----- #if 0 : If0Label_1 ----- */
+
+
 
 /**
  * @brief Class representing RandomVariable in use.
