@@ -180,9 +180,22 @@ void RandomVariable<Sample_Type, Prob_Type>::generate(vector<Prob_Type>& result)
     }
 }
 
+/**
+ * @brief Calculate the entropy of a given vector of distribution.
+ *
+ * @tparam Sample_Type
+ * @tparam Prob_Type
+ * @param log_base
+ *
+ * @return 
+ */
 template<typename Sample_Type, typename Prob_Type>
-double RandomVariable<Sample_Type, Prob_Type>::entropy(unsigned log_base)
+double RandomVariable<Sample_Type, Prob_Type>::entropy(const vector<Prob_Type>& dist
+        , unsigned binSize
+        , unsigned log_base
+        )
 {
+    BOOST_LOG_TRIVIAL(debug) << "Calculating entropy : bin size " << binSize;
 
 }
 
@@ -201,6 +214,7 @@ int main()
     result.resize(100);
     rv.generate(result);
     for(auto i : result) cerr << i << ", ";
+    rv.entropy(result, 10, 2);
 }
 
 #endif

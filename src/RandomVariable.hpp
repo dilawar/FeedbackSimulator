@@ -97,7 +97,7 @@ class RandomVariable
 
         void generate(vector<Prob_Type>& result);
 
-        double entropy(unsigned log_base = 2);
+        double entropy(const vector<Prob_Type>& dist, unsigned binSize, unsigned log_base = 2);
 
         /* ====================  OPERATORS     =================================== */
 
