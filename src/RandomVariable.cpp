@@ -13,6 +13,8 @@
  *         Author:  Dilawar Singh (), dilawars@ncbs.res.in
  *   Organization:  
  *
+ *   COMPILE_COMMAND: g++ -DBOOST_LOG_DYN_LINK -DPROB_MAIN_LOCAL -Wall RandomVariable.cpp
+ *
  * ==============================================================================
  */
 
@@ -36,22 +38,24 @@ RandomVariable<Sample_Type, Prob_Type>::RandomVariable ()
     
 }  /* -----  end of method RandomVariable::RandomVariable  (constructor)  ----- */
 
-/*
- *-------------------------------------------------------------------------------
- *       Class:  RandomVariable
- *      Method:  RandomVariable
- * Description:  constructor
- *-------------------------------------------------------------------------------
- */
 template<typename Sample_Type, typename Prob_Type>
 RandomVariable<Sample_Type, Prob_Type>::RandomVariable ( string type )
 {
-    BOOST_LOG_TRIVIAL(info) << "Creating a RandomVariable with type : " << type 
-        << endl;
-    
+    BOOST_LOG_TRIVIAL(info) << "Creating a RandomVariable with type : " << type;
     setType(type);
 
 }  /* -----  end of method RandomVariable::RandomVariable  (constructor)  ----- */
+
+template<typename Sample_Type, typename Prob_Type>
+RandomVariable<Sample_Type, Prob_Type>::RandomVariable( string type
+        , Prob_Type mean
+        , Prob_Type variance
+        )
+{
+    setType(type);
+    setMean(mean);
+    setVariance(variance);
+}
 
 /*
  *-------------------------------------------------------------------------------
@@ -107,6 +111,27 @@ void RandomVariable<Sample_Type, Prob_Type>::setType(string type)
     type = type;
 }
 
+/**
+ * @brief Set the mean of the random variable.
+ *
+ * @tparam Sample_Type
+ * @tparam Prob_Type
+ * @param mean
+ */
+template<typename Sample_Type, typename Prob_Type>
+void RandomVariable<Sample_Type, Prob_Type>::setMean(double mean)
+{
+    BOOST_LOG_TRIVIAL(debug) << "+ Setting mean to " << mean;
+    mean = mean;
+}
+
+template<typename Sample_Type, typename Prob_Type>
+void RandomVariable<Sample_Type, Prob_Type>::setVariance(double variance)
+{
+    BOOST_LOG_TRIVIAL(debug) << "+ Setting variance to " << variance;
+    variance = variance;
+}
+
 #ifdef PROB_MAIN_LOCAL
 
 #include <iostream>
@@ -114,9 +139,10 @@ using namespace std;
 
 int main()
 {
-    BOOST_LOG_TRIVIAL(info) << "Creating a random distribution ... " << endl;
-    RandomVariable<int, double> rv;
-
+    BOOST_LOG_TRIVIAL(info) << "Creating a random distribution ... ";
+    RandomVariable<int, double> rv("Guassian");
+    rv.setMean(0.0);
+    rv.setVariance(1.0);
 }
 
 #endif

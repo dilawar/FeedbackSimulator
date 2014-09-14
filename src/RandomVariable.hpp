@@ -38,6 +38,7 @@ class RandomVariable
         /* ====================  LIFECYCLE     =================================== */
         RandomVariable ();                             /* constructor      */
         RandomVariable ( string type );
+        RandomVariable ( string type, Prob_Type mean, Prob_Type variance);
 
         RandomVariable ( const RandomVariable &other );   /* copy constructor */
         ~RandomVariable ();                            /* destructor       */
@@ -46,6 +47,10 @@ class RandomVariable
 
         /* ====================  MUTATORS      =================================== */
         void setType(string type);
+
+        void setMean(double mean);
+
+        void setVariance(double variance);
 
         /* ====================  OPERATORS     =================================== */
 
@@ -57,7 +62,8 @@ class RandomVariable
         /* ====================  DATA MEMBERS  =================================== */
         string name;
         string type;
-
+        double mean;
+        double variance;
 
     private:
         /* ====================  METHODS       =================================== */
