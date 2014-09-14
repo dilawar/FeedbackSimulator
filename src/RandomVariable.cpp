@@ -180,6 +180,13 @@ void RandomVariable<Sample_Type, Prob_Type>::generate(vector<Prob_Type>& result)
     }
 }
 
+template<typename Sample_Type, typename Prob_Type>
+double RandomVariable<Sample_Type, Prob_Type>::entropy(unsigned log_base)
+{
+
+}
+
+
 #ifdef PROB_MAIN_LOCAL
 #include <iostream>
 using namespace std;

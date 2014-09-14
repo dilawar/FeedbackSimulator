@@ -97,6 +97,8 @@ class RandomVariable
 
         void generate(vector<Prob_Type>& result);
 
+        double entropy(unsigned log_base = 2);
+
         /* ====================  OPERATORS     =================================== */
 
         RandomVariable& operator = ( const RandomVariable &other ); /* assignment operator */
