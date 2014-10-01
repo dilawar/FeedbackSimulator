@@ -1,6 +1,8 @@
 \documentclass{beamer}
+\usepackage{tikz}
 \usepackage[orientation=landscape,size=a2,scale=1]{beamerposter}
 \usepackage[absolute,overlay]{textpos}
+\usetikzlibrary{arrows}
 \begin{document}
 
 \begin{textblock}{15}(0.5, 0.5)
@@ -11,11 +13,42 @@
     \end{block}
     \begin{block}{Abstract}
 
-        In this rotation project, we propose a control and information theory
-        based scheme which can be used to control cell size. We strive for a
-        simple control network which can keep the size of the cell at a fixed
-        value while giving a upper bound on the size of the endosome.
+        We propose a  possible mechanism based on control and information theory
+        which can be used to control cell size. We explore few network
+        topologies of a simple control network which can keep the size of the
+        cell at a fixed value while giving a upper bound on the size of the
+        Endosome.
 
+\end{block}
+\end{textblock}
+
+\begin{textblock}{7}(0.5,3.5)
+
+    \begin{block}{Network under study}
+
+        \begin{figure}
+        \begin{center}
+        \begin{tikzpicture}[scale=1]
+
+            %% Here is the macro which draws the gene regulatory arrow.
+            %% args: starting point, width, height, fillcolor
+            \newcommand\arrow[4]
+            {
+                \draw[color=#4,fill] #1  -- ++(0,0.5) -- ++(-5,0);
+            };
+
+            \begin{scope}
+                \arrow{(0,0)}{}{}{red};
+            \end{scope}
+
+            
+        \end{tikzpicture}
+        \end{center}
+        \caption{}
+        \label{fig:}
+        \end{figure}
+
+        
     \end{block}
 
 \end{textblock}
