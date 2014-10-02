@@ -29,6 +29,7 @@
 
 
 \begin{frame}{Network under study}
+
     \begin{figure}
         \includegraphics[width=0.5\textwidth]{./fig_mrna_protein.png}
         \begin{tikzpicture}[scale=0.2]
@@ -57,18 +58,20 @@
         \end{tikzpicture} 
 
 
-        \caption{\small On left, mRNA/Protein network. In
-            our scheme $X_1$ is mRNA and $X_2$ is its protein. Genes are
-            intermediate variables which are not shown in network.
-            Intermediate variable appears only in feedback path. On right,
-        an equivalent Petri net with some details omitted. }
-    \label{fig:demon} \end{figure}
+        \caption{\small On left, mRNA/Protein network. In our scheme $X_1$ is
+        mRNA and $X_2$ is its protein. Genes are intermediate variables which
+    are not shown in network.  Intermediate variable appears only in feedback
+    path. On right, an equivalent Petri net with some details omitted. }
+        
+    \label{fig:demon} 
 
-    \begin{eqnarray*}
-        \tiny
-        X_1 \xrightarrow{f'(x_2(-\infty,t))} X_1 + 1 \qquad X_1 \xrightarrow{\tau_{x_1}} X_1 -1 \\
-        X_2 \xrightarrow{f(x_1)} X_2 + 1 \qquad X_2 \xrightarrow{\tau_{x_2}} X_2 - 1
-    \end{eqnarray*}
+\end{figure}
+
+    \begin{eqnarray}
+        %X_1 \xrightarrow{f'(x_2(-\infty,t))} X_1 + 1 \qquad X_1 \xrightarrow{\tau_{x_1}} X_1 -1 \\
+        %X_2 \xrightarrow{f(x_1)} X_2 + 1 \qquad X_2 \xrightarrow{\tau_{x_2}} X_2 - 1 \\
+    \end{eqnarray}
+
 \end{frame}
 
 \begin{frame}
@@ -107,15 +110,14 @@
 
     The following stochastic equation describes $x_1$.
     \def\mean#1{\left< #1 \right>}
-    \begin{equation}
-        dx_1 = (\frac{f'-x_1}{\tau _1}) dt + \sqrt{2\mean{x_1}/\tau_1}dw
-    \end{equation}
+
+    $dx_1 = (\frac{f'-x_1}{\tau_1}) dt + \sqrt{\frac{2\mean{x_1}{\tau_1}}}dw$
 
     Following result \cite{paulsson} sets the bound on the variation on
     $x_1$ for the given optimal rate function $f'$ and any $\tau_2$.
 
     \begin{equation}
-        \frac{\sigma_{x_1}^2}{\mean{x_1}} \geq \frac{1}{\sqrt{N_1N_2}}
+        \frac{\sigma_{x_1}^2}{\mean{x_1}} \geq \frac{1}{\sqrt{N_1 N_2}}
     \end{equation}
 
 \end{frame}
