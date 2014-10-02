@@ -1,9 +1,11 @@
 \documentclass{beamer}
 \usepackage{tikz}
+\usepackage{lmodern}
 \usepackage[orientation=landscape,size=a0,scale=2]{beamerposter}
 \usepackage[absolute,overlay]{textpos}
-\usetikzlibrary{arrows}
+\usetikzlibrary{shapes,arrows}
 \usetikzlibrary{petri}
+\usetikzlibrary{automata}
 
 \begin{document}
 
@@ -52,13 +54,27 @@
 
             \draw[ultra thick,red,-triangle 90] (Xd) to [bend left] (death) (Xd) to (birth);
 
-            \end{tikzpicture}
-        \caption{\small On left, mRNA/Protein network. In our scheme $X_1$ is
-    mRNA and $X_2$ is its protein. On right, an equivalent Petri net with some
-    details omitted. } 
+            \end{tikzpicture} 
+            
+            \begin{tikzpicture}
+                % This one is information theory approach
+                \tikzstyle{block} = [draw,rectangle, inner sep=15mm];
 
-    \label{fig:demon} 
-    \end{figure}
+                \node[block] (encoder) at (0,0) {Encoder};
+                \node[block,right of=encoder,node distance=10 cm] (channel)  {Channel};
+                \node[block,right of=channel,node distance=10 cm] (decoder)  {Decoder};
+
+            \end{tikzpicture}
+            
+            
+            \caption{\small On left, mRNA/Protein network. In
+                our scheme $X_1$ is mRNA and $X_2$ is its protein. Genes are
+                intermediate variables which are not shown in network.
+                Intermediate variable appears only in feedback path. On right,
+                an equivalent Petri net with some details omitted. }
+            \label{fig:demon} \end{figure}
+
+
 
     \begin{eqnarray*}
         \tiny
