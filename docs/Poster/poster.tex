@@ -1,8 +1,10 @@
 \documentclass{beamer}
 \usepackage{tikz}
-\usepackage[orientation=landscape,size=a2,scale=1]{beamerposter}
+\usepackage[orientation=landscape,size=a0,scale=2]{beamerposter}
 \usepackage[absolute,overlay]{textpos}
 \usetikzlibrary{arrows}
+\usetikzlibrary{petri}
+
 \begin{document}
 
 \begin{textblock}{15}(0.5, 0.5)
@@ -26,37 +28,37 @@
 
     \begin{block}{Network under study}
         \begin{figure}
-            \includegraphics[]{./fig_mrna_protein.png}
-%%        \begin{tikzpicture}[scale=1]
-%%
-%%            %% Here is the macro which draws the gene regulatory arrow.
-%%            %% args: starting point, width, height, fillcolor
-%%            \newcommand\arrow[4]
-%%            {
-%%                \draw[draw,fill=#4] #1 ++(0,{#3/4}) -- ++(0,{#3/2})
-%%                -- ++({-#2*2/3},0) -- ++(0,{#3/4}) -- ++({-#2/3},{-#3/2})
-%%                -- ++({#2/3},{-#3/2}) -- ++(0,{#3/4}) -- cycle
-%%                ;
-%%            };
-%%
-%%            \begin{scope}
-%%                \arrow{(0,0)}{4}{2}{red};
-%%            \end{scope}
-%%
-%%            
-%%        \end{tikzpicture}
-            \begin{tikzpicture}
-                \node[] (x1) at (0,0) {$X_1$};
-                \node[] (x2)  at (5,0) {$X_2$};
-                \draw[->] (x1) -- (x2);
+            \includegraphics[scale=3]{./fig_mrna_protein.png}
+            \begin{tikzpicture}[
+                ]
+            \node[place,tokens=1,label=above:$X_1$] (X1) at (0,0) {};
+            \node[place,colored tokens={red,red,red},label=below:$X_2$] (X2) at (0,-5) {};
+
+            \node[transition,blue,fill,label=above:$f$] (birth) at (3,0) {};
+            \node[transition,red,fill,label=below:$\tau$] (death) at (3,-5) {};
+
+            \node[place,label=above:Birth] (Xb) at (10,0) {};
+            \node[place,label=below:Death] (Xd) at (10,-5) {};
+
+
+            \draw[->] (X1) to (birth) to node[above] {\tiny U} (Xb);
+            \draw[->] (X1) to  (death);
+            \draw[->] (X2) to (death)  to (Xd);
+            \draw[->] (X2) to (birth);
+
+            \draw[->,blue] (Xb) to [bend right]  (birth);
+            \draw[->,blue] (Xb) to (death);
+
+            \draw[red,->] (Xd) to [bend left] (death) (Xd) to (birth);
+
             \end{tikzpicture}
-        \caption{Network under consideration. In our scheme $x_1$ is mRNA and
-        $x_2$ is protein.}
+
+        \caption{Network under consideration. In our scheme $x_1$ is mRNA and $x_2$ is protein.}
         \label{fig:demon}
         \end{figure}
     
         \begin{equation}
-            x_1 \rightarrow x_1 + 1 \\
+            %x_1 \rightarrow x_1 + 1 \\
         \end{equation}
 
 
