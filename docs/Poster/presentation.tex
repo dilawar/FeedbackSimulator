@@ -8,7 +8,7 @@
 \usetikzlibrary{petri}
 \usetikzlibrary{automata}
 
-\title{Suppression of Variation in Cell-Size: A Control Theoretic Approach}
+\title{Suppression of Variability in Cell-Size in a Control Network}
 \author{Dilawar Singh, Madan Rao}
 \begin{document}
 
@@ -18,11 +18,13 @@
 
     Building over a recent work \cite{paulsson}, we explored the possibility of
     creating networks of small networks which can be utilized for controlling
-    cell size. We explored few  topologies in direction of finding a control
-    network which can keep the size of the cell fixed and put an upper bound on
-    the size of the Endosome. Some progress has been made on building a
-    simulator for these topologies in an event-driven simulation environment
-    (SystemC library of C++)
+    the cell size (increased by exocytosis and decreased by endocytosis). We
+    explore possible topologies which can keep the size of the cell "fixed" and
+    put an upper bound on the variance of the size of the Endosome (increased by
+    endocytosis and decreased by exocytosis). 
+    
+    A simulator for exploring these topologies in an event-driven simulation
+    environment (SystemC library of C++) has been written
     \footnote{https://github.com/dilawar/FeedbackSimulator/}.
 
 \end{frame}
@@ -32,15 +34,16 @@
     \frametitle{Background}
 
     \begin{itemize} 
+
         \item Inside the cell, randomizing and correcting statistical forces
             battle it out and create fluctuations - noise. Many control
-            circuits have evolved to eliminate or exploit the noise.  
+            circuits are found in cell which eliminates, tolerates, or exploits the noise.  
 
-        \item In this rotation project, we used a recent result \cite{paulsson}
-            which establishes limits on 'controllability' in a feedback network
-            to build control networks for controlling cell-size.
+        \item In this rotation project, a recent result \cite{paulsson} which
+            establishes limits on 'controllability' in a feedback network is
+            used to explore control networks for controlling cell-size.
 
-        \item To explore such network construct, we started building a
+        \item To analyze such possible networks, we have been building a
             simulation environment using C++ and event-driven simulation library
             \textbf{SystemC}.
 
