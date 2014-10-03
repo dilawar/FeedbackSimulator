@@ -183,10 +183,23 @@
 
     \begin{block}{Cascade of network}
 
-        Put a figure here.
-
         A linear cascade of networks causes information loss like the game of
         broken-telephone.
+
+        \newcommand\eqbox[3]
+        {
+            \node[rectangle] (eq#1) at #2  {$x_#1 \xrightarrow{#3} x_#1 + 1$};
+            \node[rectangle,below of=eq#1] (#1_sub) {$x_#1
+            \xrightarrow{x_#1/\tau_#1} x_#1 - 1$};
+        }
+
+        \begin{tikzpicture}[scale=1]
+            \eqbox{2}{(0,0)}{\lambda};
+            \eqbox{n}{(4,0)}{\alpha_{n-1}x_{n-1}}
+            \node[rectangle] (final) at (8,0) {$x_{n+1}
+            \xrightarrow{\alpha_nx_n} x_{n+1}+1$};
+        \end{tikzpicture}
+
 
         \begin{equation}
             \frac{1}{N_{eff}} = \sum_{j=2}^{n+1} {N_j}^{-1}
