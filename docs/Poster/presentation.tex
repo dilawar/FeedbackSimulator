@@ -8,40 +8,41 @@
 \usetikzlibrary{petri}
 \usetikzlibrary{automata}
 
-\title{Suppression of Variability in Cell-Size in a Control Network}
+\title {Cell-size and Variance in Endosome-size control in a Feedback Network }
 \author{Dilawar Singh, Madan Rao}
+\date{}
+
 \begin{document}
 
 \begin{frame}
-
     \maketitle
 
+    \small
     Building over a recent work \cite{paulsson}, we explored the possibility of
     creating networks of small networks which can be utilized for controlling
-    the cell size (increased by exocytosis and decreased by endocytosis). We
-    explore possible topologies which can keep the size of the cell "fixed" and
-    put an upper bound on the variance of the size of the Endosome (increased by
-    endocytosis and decreased by exocytosis). 
-    
-    A simulator for exploring these topologies in an event-driven simulation
-    environment (SystemC library of C++) has been written
-    \footnote{https://github.com/dilawar/FeedbackSimulator/}.
+    the cell size . We explore possible topologies which can keep the size of
+    the cell "fixed" and put an upper bound on the variance of the size of the
+    Endosome. Only endocytosis and exocytosis events affect the cell- and
+    endosome-size in this treatment.  A simulator for exploring these topologies
+    in an event-driven simulation environment (SystemC library of C++) has been
+    written \footnote{https://github.com/dilawar/FeedbackSimulator/}.
 
 \end{frame}
 
 %% Slide 2.
 \begin{frame}
-    \frametitle{Background}
+    \frametitle{Introduction}
 
     \begin{itemize} 
 
         \item Inside the cell, randomizing and correcting statistical forces
-            battle it out and create fluctuations - noise. Many control
-            circuits are found in cell which eliminates, tolerates, or exploits the noise.  
+            create fluctuations - noise. Many control circuits are found in cell
+            which eliminates, tolerates, or exploits the noise.  
 
         \item In this rotation project, a recent result \cite{paulsson} which
-            establishes limits on 'controllability' in a feedback network is
-            used to explore control networks for controlling cell-size.
+            establishes fundamental bounds using information theory on
+            noise-suppression in a feedback network is used to explore control
+            networks for controlling cell-size.
 
         \item To analyze such possible networks, we have been building a
             simulation environment using C++ and event-driven simulation library
@@ -223,6 +224,7 @@
             \item For given benchmarks (fixed $S_0$ and variance in
                 $X_2$), can $U$ be designed?
         \end{enumerate}
+
     \end{block}
 
 \end{frame}
@@ -245,6 +247,15 @@
         \\
         And various Open Source Softwares especially \LaTeX.
 
+    \end{block}
+
+\end{frame}
+
+\begin{frame}
+    \frametitle{Simulation Flow}
+
+    \begin{block}{}
+        \includegraphics[width=0.9\textwidth]{./ams_sim_cycle.png}
     \end{block}
 
 \end{frame}
